@@ -1,26 +1,23 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const AdministradorSchema = Schema(
+const PropiedadSchema = Schema(
   {
-    nombre: {
+    uid: {
       type: String,
       required: true,
     },
-    correo: {
+    direccion: {
       type: String,
       required: true,
     },
-    password: {
+    descripcion: {
       type: String,
       required: true,
-    },
-    role: {
-      type: String,
-      default: "admin",
     },
   },
+
   { timestamps: true }
 );
 
-export default mongoose.model("Administrador", AdministradorSchema);
+export default mongoose.model("propiedade", PropiedadSchema);

@@ -1,27 +1,27 @@
 import { response } from "express";
-import Propietario from "../models/Propietario";
+import Propiedad from "../models/Propiedad";
 
-export const getPropietarios = async (req, res = response) => {
-  const propietarios = await Propietario.find();
+export const getPropiedades = async (req, res = response) => {
+  const propiedades = await Propiedad.find();
 
-  if (propietarios) {
+  if (propiedades) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      propiedades,
     });
   }
 };
 
-export const agregarPropietario = async (req, res = response) => {
-  const propietario = new Propietario(req.body);
+export const agregarPropiedad = async (req, res = response) => {
+  const propiedad = new Propiedad(req.body);
 
-  if (propietario) {
+  if (propiedad) {
     try {
-      const propietarioSaved = await propietario.save();
+      const propiedadSaved = await propiedad.save();
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        propiedadSaved,
       });
     } catch (error) {
       console.log(error);
@@ -38,17 +38,17 @@ export const agregarPropietario = async (req, res = response) => {
   }
 };
 
-export const actualizarPropietario = async (req, res = response) => {
-  const propietario = req.body;
+export const actualizarPropiedad = async (req, res = response) => {
+  const propiedad = req.body;
   const { pid } = req.params;
 
-  if (propietario) {
+  if (propiedad) {
     try {
-      const propietarioSaved = await propietario.update({ _id: pid });
+      const propiedadSaved = await propiedad.update({ _id: pid });
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        propiedadSaved,
       });
     } catch (error) {
       console.log(error);
@@ -65,14 +65,14 @@ export const actualizarPropietario = async (req, res = response) => {
   }
 };
 
-export const deletePropietario = async (req, res = response) => {
+export const deletePropidad = async (req, res = response) => {
   const { pid } = req.params;
-  const propietarios = await Propietario.deleteOne({ _id: pid });
+  const propiedad = await Propiedad.deleteOne({ _id: pid });
 
-  if (propietarios) {
+  if (propiedad) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      propiedad,
     });
   } else {
     res.status(500).json({

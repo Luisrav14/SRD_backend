@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const CuotaSchema = Schema(
+const RefrendoSchema = Schema(
   {
     uid: {
       type: String,
@@ -21,4 +21,4 @@ const CuotaSchema = Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Cuota", CuotaSchema);
+export default mongoose.model("refrendo", RefrendoSchema);

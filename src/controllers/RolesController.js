@@ -1,27 +1,27 @@
 import { response } from "express";
-import Propietario from "../models/Propietario";
+import Role from "../models/Role";
 
-export const getPropietarios = async (req, res = response) => {
-  const propietarios = await Propietario.find();
+export const getRoles = async (req, res = response) => {
+  const roles = await Role.find();
 
-  if (propietarios) {
+  if (roles) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      refrendos,
     });
   }
 };
 
-export const agregarPropietario = async (req, res = response) => {
-  const propietario = new Propietario(req.body);
+export const agregarRole = async (req, res = response) => {
+  const role = new Role(req.body);
 
-  if (propietario) {
+  if (role) {
     try {
-      const propietarioSaved = await propietario.save();
+      const roleSaved = await role.save();
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        roleSaved,
       });
     } catch (error) {
       console.log(error);
@@ -38,17 +38,17 @@ export const agregarPropietario = async (req, res = response) => {
   }
 };
 
-export const actualizarPropietario = async (req, res = response) => {
-  const propietario = req.body;
-  const { pid } = req.params;
+export const actualizarRole = async (req, res = response) => {
+  const role = req.body;
+  const { rid } = req.params;
 
-  if (propietario) {
+  if (role) {
     try {
-      const propietarioSaved = await propietario.update({ _id: pid });
+      const roleSaved = await role.update({ _id: rid });
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        roleSaved,
       });
     } catch (error) {
       console.log(error);
@@ -65,14 +65,14 @@ export const actualizarPropietario = async (req, res = response) => {
   }
 };
 
-export const deletePropietario = async (req, res = response) => {
-  const { pid } = req.params;
-  const propietarios = await Propietario.deleteOne({ _id: pid });
+export const deleteRole = async (req, res = response) => {
+  const { rid } = req.params;
+  const role = await Role.deleteOne({ _id: rid });
 
-  if (propietarios) {
+  if (role) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      role,
     });
   } else {
     res.status(500).json({

@@ -13,15 +13,12 @@ const PropietarioSchema = Schema(
     },
     clave_catastral: {
       type: String,
-      required: true,
     },
     correo: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
-      required: true,
     },
   },
 

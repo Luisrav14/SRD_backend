@@ -1,27 +1,27 @@
 import { response } from "express";
-import Propietario from "../models/Propietario";
+import Vehiculo from "../models/Vehiculo";
 
-export const getPropietarios = async (req, res = response) => {
-  const propietarios = await Propietario.find();
+export const getVehiculos = async (req, res = response) => {
+  const vehiculos = await Vehiculo.find();
 
-  if (propietarios) {
+  if (vehiculos) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      vehiculos,
     });
   }
 };
 
-export const agregarPropietario = async (req, res = response) => {
-  const propietario = new Propietario(req.body);
+export const agregarVehiculo = async (req, res = response) => {
+  const vehiculo = new Vehiculo(req.body);
 
-  if (propietario) {
+  if (vehiculo) {
     try {
-      const propietarioSaved = await propietario.save();
+      const vehiculoSaved = await vehiculo.save();
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        vehiculoSaved,
       });
     } catch (error) {
       console.log(error);
@@ -38,17 +38,17 @@ export const agregarPropietario = async (req, res = response) => {
   }
 };
 
-export const actualizarPropietario = async (req, res = response) => {
-  const propietario = req.body;
-  const { pid } = req.params;
+export const actualizarVehiculo = async (req, res = response) => {
+  const vehiculo = req.body;
+  const { vid } = req.params;
 
-  if (propietario) {
+  if (vehiculo) {
     try {
-      const propietarioSaved = await propietario.update({ _id: pid });
+      const vehiculoSaved = await vehiculo.update({ _id: vid });
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        vehiculoSaved,
       });
     } catch (error) {
       console.log(error);
@@ -65,14 +65,14 @@ export const actualizarPropietario = async (req, res = response) => {
   }
 };
 
-export const deletePropietario = async (req, res = response) => {
-  const { pid } = req.params;
-  const propietarios = await Propietario.deleteOne({ _id: pid });
+export const deleteVehiculo = async (req, res = response) => {
+  const { vid } = req.params;
+  const vehiculo = await Vehiculo.deleteOne({ _id: vid });
 
-  if (propietarios) {
+  if (vehiculo) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      vehiculo,
     });
   } else {
     res.status(500).json({

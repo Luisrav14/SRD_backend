@@ -1,27 +1,27 @@
 import { response } from "express";
-import Propietario from "../models/Propietario";
+import Refrendo from "../models/Refrendo";
 
-export const getPropietarios = async (req, res = response) => {
-  const propietarios = await Propietario.find();
+export const getRefrendo = async (req, res = response) => {
+  const refrendos = await Refrendo.find();
 
-  if (propietarios) {
+  if (refrendos) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      refrendos,
     });
   }
 };
 
-export const agregarPropietario = async (req, res = response) => {
-  const propietario = new Propietario(req.body);
+export const agregarRefrendo = async (req, res = response) => {
+  const refrendo = new Refrendo(req.body);
 
-  if (propietario) {
+  if (refrendo) {
     try {
-      const propietarioSaved = await propietario.save();
+      const refrendoSaved = await refrendo.save();
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        refrendoSaved,
       });
     } catch (error) {
       console.log(error);
@@ -38,17 +38,17 @@ export const agregarPropietario = async (req, res = response) => {
   }
 };
 
-export const actualizarPropietario = async (req, res = response) => {
-  const propietario = req.body;
-  const { pid } = req.params;
+export const actualizarRefrendo = async (req, res = response) => {
+  const refrendo = req.body;
+  const { rid } = req.params;
 
-  if (propietario) {
+  if (refrendo) {
     try {
-      const propietarioSaved = await propietario.update({ _id: pid });
+      const refrendoSaved = await refrendo.update({ _id: rid });
 
       res.status(201).json({
         status: "success",
-        propietarioSaved,
+        refrendoSaved,
       });
     } catch (error) {
       console.log(error);
@@ -65,14 +65,14 @@ export const actualizarPropietario = async (req, res = response) => {
   }
 };
 
-export const deletePropietario = async (req, res = response) => {
+export const deleteRefrendo = async (req, res = response) => {
   const { pid } = req.params;
-  const propietarios = await Propietario.deleteOne({ _id: pid });
+  const refrendo = await Refrendo.deleteOne({ _id: pid });
 
-  if (propietarios) {
+  if (refrendo) {
     res.status(201).json({
       status: "success",
-      propietarios,
+      refrendo,
     });
   } else {
     res.status(500).json({

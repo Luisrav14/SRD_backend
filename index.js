@@ -21,7 +21,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 // Rutas
-app.use("/api/propietario", propietarioRoutes);
+app.use("/api/propietarios", propietarioRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/administrador", administradorRoutes);
 app.use("/api/cuota", cuotaRoutes);
