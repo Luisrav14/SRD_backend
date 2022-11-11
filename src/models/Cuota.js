@@ -1,4 +1,4 @@
-import mongoose from "mongose";
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const CuotaSchema = Schema(

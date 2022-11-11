@@ -1,4 +1,4 @@
-import mongoose from "mongose";
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const AdministradorSchema = Schema(
@@ -17,7 +17,7 @@ const AdministradorSchema = Schema(
     },
     role: {
       type: String,
-      required: true,
+      default: 'admin'
     },
   },
   { timestamps: true }

@@ -13,6 +13,7 @@ export const getPropietarios = async (req, res = response) => {
 };
 
 export const agregarPropietario = async (req, res = response) => {
+
   const propietario = new Propietario(req.body);
 
   if (propietario) {
